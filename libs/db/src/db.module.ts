@@ -10,12 +10,23 @@ const models = TypegooseModule.forFeature([User, Course, Episode]);
 @Global() // 全局
 @Module({
   imports: [
-    TypegooseModule.forRoot('mongodb://localhost:27017/linkschool-api', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
+    TypegooseModule.forRootAsync({
+      useFactory() {
+        return {
+          uri: process.env.DB,
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useFindAndModify: false,
+          useCreateIndex: true,
+        };
+      },
     }),
+    // TypegooseModule.forRoot(process.env.DB, {
+    //   useNewUrlParser: true,
+    //   useUnifiedTopology: true,
+    //   useFindAndModify: false,
+    //   useCreateIndex: true,
+    // }),
     models, // 引入
   ],
   providers: [DbService],

@@ -1,7 +1,8 @@
 // 课时
-import { modelOptions, prop } from '@typegoose/typegoose';
+import { modelOptions, prop, Ref } from '@typegoose/typegoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
+import { Course } from './course.model';
 
 @modelOptions({
   schemaOptions: {
@@ -17,4 +18,7 @@ export class Episode {
   @ApiProperty({ description: '课时文件', example: '' })
   @prop()
   file: string;
+
+  @prop({ ref: 'Course' })
+  course: Ref<Course>;
 }

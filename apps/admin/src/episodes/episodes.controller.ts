@@ -5,6 +5,7 @@ import { Crud } from 'nestjs-mongoose-crud';
 import { InjectModel } from 'nestjs-typegoose';
 import { IsNotEmpty } from 'class-validator';
 import { Episode } from '@libs/db/models/episode.model';
+import { Course } from '@libs/db/models/course.model';
 
 @Crud({
   model: Episode,
@@ -38,5 +39,6 @@ import { Episode } from '@libs/db/models/episode.model';
 export class EpisodesController {
   constructor(
     @InjectModel(Episode) private readonly model: ModelType<Episode>,
+    @InjectModel(Course) private readonly courseModel: ModelType<Course>,
   ) {}
 }

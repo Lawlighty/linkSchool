@@ -5,7 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AdminModule);
-
+  app.enableCors(); // 允许跨域
   const config = new DocumentBuilder()
     .setTitle('极客学院后台管理API')
     .setDescription('供极客学院调用的服务端API')
@@ -17,6 +17,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
 
-  await app.listen(3000);
+  const PORT = process.env.ADMIN_PORT || 3000;
+  await app.listen(PORT);
 }
 bootstrap();

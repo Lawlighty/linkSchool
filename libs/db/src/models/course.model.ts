@@ -19,7 +19,7 @@ export class Course {
   @prop()
   cover: string;
 
-  @ApiProperty({ description: '课时', example: [] })
-  @arrayProp({ itemsRef: 'Episode' })
-  episodes: Ref<Episode>[];
+  //   @ApiProperty({ description: '课时', example: [] })
+  //   @arrayProp({ itemsRef: 'Episode' })
+  //   episodes: Ref<Episode>[];
 }
