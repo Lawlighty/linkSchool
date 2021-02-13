@@ -1,6 +1,6 @@
 # linkSchool
 极客学院服务端(管理端/客户端)
-## 启动 server 文件夹下
+## 启动 ( server 文件夹下)
 * npm start -w admin (管理端)
 * npm start -w server (客户端)
 ### server
