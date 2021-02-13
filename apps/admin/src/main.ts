@@ -7,10 +7,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AdminModule);
   app.enableCors(); // 允许跨域
   const config = new DocumentBuilder()
-    .setTitle('极客学院后台管理API')
+    .setTitle('极客学院后台管理API(管理端))')
     .setDescription('供极客学院调用的服务端API')
     .setVersion('1.0')
-    .addTag('Geek')
+    // .addTag('Geek')
     .build();
 
   app.useGlobalPipes(new ValidationPipe());

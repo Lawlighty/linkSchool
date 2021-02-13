@@ -7,6 +7,7 @@ import { Episode } from './episode.model';
 @modelOptions({
   schemaOptions: {
     timestamps: true, // 模型额外添加 create update time
+    toJSON: { virtuals: true }, // 开启虚拟字段
   },
 })
 export class Course {
@@ -19,7 +20,11 @@ export class Course {
   @prop()
   cover: string;
 
-  //   @ApiProperty({ description: '课时', example: [] })
-  //   @arrayProp({ itemsRef: 'Episode' })
-  //   episodes: Ref<Episode>[];
+  @ApiProperty({ description: '课时', example: [] })
+  @arrayProp({
+    ref: 'Episode',
+    localField: '_id', // Course类的本地键
+    foreignField: 'course', // 与Episode的course进行关联
+  })
+  episodes: Ref<Episode>[];
 }
