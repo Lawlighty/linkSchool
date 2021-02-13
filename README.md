@@ -1,11 +1,12 @@
 # linkSchool
 极客学院服务端(管理端/客户端)
+
 ## 启动 ( server 文件夹下)
 * npm start -w admin (管理端)
 * npm start -w server (客户端)
 ### server
-* admin 管理端
-* server 客户端
+* admin 管理端  swagger 地址 http://localhost:xxxx/api-docs
+* server 客户端 swagger 地址 http://localhost:xxxx/api-docs
 
 ### 用户注册 使用 bcryptjs
 * npm i bcryptjs 
