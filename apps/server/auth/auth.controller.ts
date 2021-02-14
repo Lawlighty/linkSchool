@@ -31,22 +31,37 @@ export class AuthController {
   @Post('register')
   @ApiOperation({ summary: '注册' })
   async Register(@Body() dto: RegisterDto) {
-    const { username, password } = dto;
+    const { username, password, ref_code } = dto;
     // 创建用户
-    const user = await this.userModel.create({
+    const new_user = {
       username,
       password,
-    });
+      ref_code,
+      auth: 'customer',
+      nickname: '',
+      gender: 2,
+      avatar:
+        'https://static-dev.roncoo.com/course/0948d9f30817454ea5386118fe1ac20a.jpg',
+      other1: '',
+      other2: '',
+    };
+    const user = await this.userModel.create(new_user);
     return user;
   }
 
   @Post('login')
   @ApiOperation({ summary: '登录' })
   @UseGuards(AuthGuard('local')) // 策略 守卫
-  // async Login(@Body() dto: LoginDto, @CurrentUser() user: DocumentType<User>) {
-  async Login(@Body() dto: LoginDto, @Req() req) {
+  async Login(@Body() dto: LoginDto, @CurrentUser() user: DocumentType<User>) {
+    // async Login(@Body() dto: LoginDto, @Req() req) {
+    // console.log('调用登录');
+    // console.log('user==>', user);
+    // console.log('user._id==>', user._id);
+    // console.log('token==>', this.JwtService.sign(user.toJSON()));
     return {
-      token: this.JwtService.sign(String(req.user._id)), // 生成token 签名
+      user: user.toJSON(),
+      // token: this.JwtService.sign({ _id: String(user._id) }), // 生成token 签名
+      token: this.JwtService.sign(user.toJSON()), // 生成token 签名
     };
   }
 

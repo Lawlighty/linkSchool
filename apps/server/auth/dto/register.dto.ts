@@ -5,4 +5,6 @@ export class RegisterDto {
   username: string;
   @ApiProperty({ description: '密码', example: '密码' })
   password: string;
+  @ApiProperty({ description: '推荐码', example: '' })
+  ref_code!: string;
 }
