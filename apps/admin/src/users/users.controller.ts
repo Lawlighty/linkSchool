@@ -35,7 +35,7 @@ class CreateUserDto {
     // put
     update: {
       decorators: [ApiOperation({ summary: '更新用户' })],
-      dto: CreateUserDto,
+      // dto: CreateUserDto,
     },
     // delete:id
     delete: {

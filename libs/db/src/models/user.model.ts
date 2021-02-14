@@ -14,7 +14,7 @@ export class User {
   username: string;
 
   @ApiProperty({ description: '登录密码', example: '123' })
-  @IsNotEmpty({ message: '请填写登录密码' })
+  // @IsNotEmpty({ message: '请填写登录密码' })
   @prop({
     select: false, // 常规数据库查询不返回该字段
     // 密码hash--.> 数据库保存之前处理

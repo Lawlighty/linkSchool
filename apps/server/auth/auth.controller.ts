@@ -1,5 +1,14 @@
 import { User } from '@libs/db/models/user.model';
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -13,6 +22,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { CurrentUser } from './current-user.decorater';
+import { UpdateUserDto } from './dto/updateUser.dto';
 // export class RegisterDto {
 //   @ApiProperty({ description: '用户名', example: '用户名' })
 //   username: string;
@@ -74,5 +84,12 @@ export class AuthController {
   // 自定义 装饰器获取user
   async user(@CurrentUser() user: DocumentType<User>) {
     return user;
+  }
+
+  @Put(':id')
+  @ApiOperation({ summary: '修改个人信息' })
+  async UpdateUserInfo(@Param('id') id: string, @Body() dto: UpdateUserDto) {
+    await this.userModel.findByIdAndUpdate(id, dto);
+    return { code: 200, message: '更新完成' };
   }
 }
