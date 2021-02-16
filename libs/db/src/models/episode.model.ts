@@ -3,6 +3,7 @@ import { modelOptions, prop, Ref } from '@typegoose/typegoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { Course } from './course.model';
+import { User } from './user.model';
 
 @modelOptions({
   schemaOptions: {
@@ -19,8 +20,21 @@ export class Episode {
   @prop()
   file: string;
 
+  @ApiProperty({ description: '课时价格' })
+  @prop()
+  price: number;
+
+  @ApiProperty({ description: '课时SVIP价格' })
+  @prop()
+  sprice: number;
+
   @ApiProperty({ description: '所属课程', example: '' })
   @IsNotEmpty({ message: '请填写所属课程' })
   @prop({ ref: 'Course' })
   course: Ref<Course>;
+
+  @ApiProperty({ description: '所属作者', example: '' })
+  @IsNotEmpty({ message: '请填写所属作者' })
+  @prop({ ref: 'User' })
+  author: Ref<User>;
 }

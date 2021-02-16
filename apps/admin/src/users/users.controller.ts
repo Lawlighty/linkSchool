@@ -14,6 +14,40 @@ class CreateUserDto {
   @ApiProperty({ description: '登录密码', example: '123' })
   @IsNotEmpty({ message: '请填写登录密码' })
   password: string;
+
+  @ApiProperty({ description: '推荐码', example: '' })
+  ref_code: string;
+
+  @ApiProperty({ description: '权限', example: 'customer' }) // customer: 普通用户, server:客服 ,admin:管理员
+  auth: string;
+
+  @ApiProperty({ description: '昵称', example: '' })
+  nickname: string;
+
+  @ApiProperty({ description: '性别', example: 0 }) // 0:男 1:女 2:保密
+  gender: number;
+
+  @ApiProperty({
+    description: '头像',
+    example:
+      'https://static-dev.roncoo.com/course/0948d9f30817454ea5386118fe1ac20a.jpg',
+  })
+  avatar: string;
+
+  @ApiProperty({ description: '介绍', example: '' })
+  introduc: string;
+
+  @ApiProperty({ description: '标签', example: '' })
+  tags: string[];
+
+  @ApiProperty({ description: '邮箱', example: '' })
+  email: string;
+
+  @ApiProperty({ description: '默认字段1', example: '' })
+  other1: string;
+
+  @ApiProperty({ description: '默认字段2', example: '' })
+  other2: string;
 }
 
 @Crud({

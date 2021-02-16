@@ -4,9 +4,17 @@ import { TypegooseModule } from 'nestjs-typegoose';
 import { User } from './models/user.model';
 import { Course } from './models/course.model';
 import { Episode } from './models/episode.model';
+import { Action } from './models/action.model';
+import { Banner } from './models/banner.model';
 
 // 引入模型
-const models = TypegooseModule.forFeature([User, Course, Episode]);
+const models = TypegooseModule.forFeature([
+  User,
+  Course,
+  Episode,
+  Action,
+  Banner,
+]);
 @Global() // 全局
 @Module({
   imports: [

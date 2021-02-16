@@ -31,7 +31,7 @@ export class User {
   @prop()
   ref_code: string;
 
-  @ApiProperty({ description: '权限', example: 'customer' }) // customer: 普通用户, admin:管理员
+  @ApiProperty({ description: '权限', example: 'customer' }) // customer: 普通用户, server:客服 ,admin:管理员
   @prop()
   auth: string;
 
@@ -46,6 +46,18 @@ export class User {
   @ApiProperty({ description: '头像', example: '' })
   @prop()
   avatar: string;
+
+  @ApiProperty({ description: '介绍', example: '' })
+  @prop()
+  introduc: string;
+
+  @ApiProperty({ description: '标签', example: '' })
+  @prop()
+  tags: string[];
+
+  @ApiProperty({ description: '邮箱', example: '' })
+  @prop()
+  email: string;
 
   @ApiProperty({ description: '默认字段1', example: '' })
   @prop()

@@ -42,21 +42,29 @@ export class AuthController {
   @ApiOperation({ summary: '注册' })
   async Register(@Body() dto: RegisterDto) {
     const { username, password, ref_code } = dto;
-    // 创建用户
-    const new_user = {
-      username,
-      password,
-      ref_code,
-      auth: 'customer',
-      nickname: '',
-      gender: 2,
-      avatar:
-        'https://static-dev.roncoo.com/course/0948d9f30817454ea5386118fe1ac20a.jpg',
-      other1: '',
-      other2: '',
-    };
-    const user = await this.userModel.create(new_user);
-    return user;
+    const user_check = await this.userModel.findOne({ username: username });
+    if (!user_check) {
+      // 创建用户
+      const new_user = {
+        username,
+        password,
+        ref_code,
+        auth: 'customer',
+        nickname: username,
+        gender: 2,
+        avatar:
+          'https://static-dev.roncoo.com/course/0948d9f30817454ea5386118fe1ac20a.jpg',
+        introduc: '',
+        tags: [],
+        email: '',
+        other1: '',
+        other2: '',
+      };
+
+      const user = await this.userModel.create(new_user);
+      return user;
+    }
+    return { status: 400, message: '该用户名已经注册!' };
   }
 
   @Post('login')
@@ -69,6 +77,7 @@ export class AuthController {
     // console.log('user._id==>', user._id);
     // console.log('token==>', this.JwtService.sign(user.toJSON()));
     return {
+      status: 200,
       user: user.toJSON(),
       // token: this.JwtService.sign({ _id: String(user._id) }), // 生成token 签名
       token: this.JwtService.sign(user.toJSON()), // 生成token 签名

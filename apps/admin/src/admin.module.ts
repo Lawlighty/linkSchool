@@ -8,6 +8,7 @@ import { CoursesModule } from './courses/courses.module';
 import { EpisodesModule } from './episodes/episodes.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { CommonModule } from 'y/common';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { CommonModule } from 'y/common';
     UsersModule,
     CoursesModule,
     EpisodesModule,
+    AuthModule,
   ], // 引入数据库module
   controllers: [AdminController],
   providers: [AdminService],
