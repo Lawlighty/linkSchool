@@ -6,6 +6,8 @@ import { Course } from './models/course.model';
 import { Episode } from './models/episode.model';
 import { Action } from './models/action.model';
 import { Banner } from './models/banner.model';
+import { Document } from './models/document.model';
+import { Tag } from './models/tag.model';
 
 // 引入模型
 const models = TypegooseModule.forFeature([
@@ -14,6 +16,8 @@ const models = TypegooseModule.forFeature([
   Episode,
   Action,
   Banner,
+  Document,
+  Tag,
 ]);
 @Global() // 全局
 @Module({

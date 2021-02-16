@@ -9,6 +9,7 @@ import { EpisodesModule } from './episodes/episodes.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { CommonModule } from 'y/common';
 import { AuthModule } from './auth/auth.module';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
     CoursesModule,
     EpisodesModule,
     AuthModule,
+    TagsModule,
   ], // 引入数据库module
   controllers: [AdminController],
   providers: [AdminService],

@@ -36,8 +36,8 @@ export class Course {
   @ApiProperty({ description: '课程作者', example: '' })
   @arrayProp({
     ref: 'User',
-    localField: '_id', // Course类的本地键
-    foreignField: 'course', // 与Episode的course进行关联
+    localField: '_id',
+    foreignField: '_id',
   })
   author: Ref<User>[];
 
