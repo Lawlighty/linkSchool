@@ -9,14 +9,14 @@ import { InjectModel } from 'nestjs-typegoose';
 
 class CreateTagDto {
   @ApiProperty({ description: '标签名称', example: '标签名称' })
-  @IsNotEmpty({ message: '请填写用户名' })
+  @IsNotEmpty({ message: '请填写标签名称' })
   name: string;
 
   @ApiProperty({ description: '标签类型', example: '' })
   type: string;
 }
 @Crud({
-  model: User,
+  model: Tag,
   routes: {
     // get
     find: {
