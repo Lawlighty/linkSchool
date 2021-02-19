@@ -9,7 +9,7 @@ import { IsNotEmpty } from 'class-validator';
   },
 })
 export class Banner {
-  @ApiProperty({ description: '轮播图名称' })
+  @ApiProperty({ description: '轮播图名称', example: '' })
   @IsNotEmpty({ message: '请填写轮播图名称' })
   @prop()
   name: string;

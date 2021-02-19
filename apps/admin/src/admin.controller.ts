@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Post,
+  Req,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -15,9 +16,11 @@ export class AdminController {
   getHello(): string {
     return this.adminService.getHello();
   }
-  @Post()
+  @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async upload(@UploadedFile('flie') file) {
+  async upload(@UploadedFile() file) {
+    // async upload(@Req() file) {
+    console.log('file==>', file);
     return file;
   }
 }
