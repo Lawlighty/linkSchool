@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiConsumes } from '@nestjs/swagger';
 @Controller()
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
@@ -18,8 +19,7 @@ export class AdminController {
   }
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async upload(@UploadedFile() file) {
-    // async upload(@Req() file) {
+  async upload(@UploadedFile('file') file) {
     console.log('file==>', file);
     return file;
   }

@@ -16,41 +16,20 @@ const mcx = require('multer-cos-x');
 @Module({
   imports: [
     CommonModule,
-    // 异步
     MulterModule.registerAsync({
-      useFactory: () => {
-        return {
-          storage: mcx({
-            cos: {
-              // 必填参数
-              SecretId: process.env.COS_SECRET,
-              SecretKey: process.env.COS_KEY,
-              Bucket: process.env.COS_BUCKET,
-              Region: process.env.COS_REGION,
-              // onProgress: (progressData) => {
-              //   //进度回调函数，回调是一个对象，包含进度信息
-              //   console.log('progressData', progressData);
-              // },
-            },
-          }),
-        };
-      },
+      useFactory: () => ({
+        storage: mcx({
+          cos: {
+            // 必填参数
+            SecretId: process.env.COS_SECRET,
+            SecretKey: process.env.COS_KEY,
+            Bucket: process.env.COS_BUCKET,
+            Region: process.env.COS_REGION,
+          },
+        }),
+        // dest: 'uploads',
+      }),
     }),
-    // MulterModule.register({
-    //   // 文件上传
-    //   storage: mcx({
-    //     cos: {
-    //       // 必填参数
-    //       // SecretId: process.env.COS_KEY,
-    //       // SecretKey: process.env.COS_SECRET,
-    //       // Bucket: process.env.COS_BUCKET,
-    //       // Region: process.env.COS_REGION,
-    //       SecretId: 'AKID1nZyjT1DGC1e4MBB5nPjBalhU5YwuLK7',
-    //       SecretKey: 'oJaaKuTs65oLl3886vXv4zbwOyHJsBG2',
-    //       Bucket: 'linkschool-1300224703',
-    //       Region: 'ap-shanghai',
-    //     },
-    //   }),
     //   // dest:'upload',// 本地存储
     // }),
     // DbModule,
