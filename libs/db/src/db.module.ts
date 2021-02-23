@@ -8,6 +8,10 @@ import { Action } from './models/action.model';
 import { Banner } from './models/banner.model';
 import { Document } from './models/document.model';
 import { Tag } from './models/tag.model';
+import { Comment } from './models/comment.model';
+import { Category } from './models/category.model';
+import { Svip } from './models/svip.model';
+import { Order } from './models/order.model';
 
 // 引入模型
 const models = TypegooseModule.forFeature([
@@ -18,6 +22,10 @@ const models = TypegooseModule.forFeature([
   Banner,
   Document,
   Tag,
+  Comment,
+  Category,
+  Svip,
+  Order,
 ]);
 @Global() // 全局
 @Module({

@@ -7,6 +7,7 @@ import { AuthModule } from '../auth/auth.module';
 import { CoursesModule } from '../courses/courses.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ActionsModule } from './actions/actions.module';
 @Module({
   imports: [
     CommonModule,
@@ -21,6 +22,7 @@ import { AppService } from './app.service';
     // UsersModule,
     AuthModule,
     CoursesModule,
+    ActionsModule,
 
     // EpisodesModule,
   ],
