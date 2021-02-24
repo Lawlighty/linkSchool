@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Put, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiProperty } from '@nestjs/swagger';
 import { ModelType, ReturnModelType } from '@typegoose/typegoose/lib/types';
 import { Crud } from 'nestjs-mongoose-crud';
@@ -7,6 +7,7 @@ import { IsNotEmpty } from 'class-validator';
 import { Episode } from '@libs/db/models/episode.model';
 import { Course } from '@libs/db/models/course.model';
 import { Post } from '@typegoose/typegoose';
+import { AuthGuard } from '@nestjs/passport';
 
 @Crud({
   model: Episode,
@@ -43,11 +44,14 @@ export class EpisodesController {
     @InjectModel(Course) private readonly courseModel: ModelType<Course>,
   ) {}
 
-  @Get('updatecourse')
-  @ApiOperation({ summary: '编辑帖子' })
-  async updatecourse(@Query() query) {
-    const episodesList = await this.model.find(query);
-    // .update({ _id: item._id }, { $set: { payType: '1' } });
-    return {};
+  @Put('updatepisodes')
+  @ApiOperation({ summary: '修改课时的课程字段' })
+  // @UseGuards(AuthGuard('jwt'))
+  async updatecourse(@Body() dto) {
+    const episodeslist = await this.model.updateMany(
+      { _id: { $in: dto.idList } },
+      { $set: { course: dto.course_id } },
+    );
+    return { status: 200, data: episodeslist };
   }
 }

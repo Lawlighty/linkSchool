@@ -33,7 +33,7 @@ export class Episode {
   // sprice: number;
 
   @ApiProperty({ description: '所属课程', example: '' })
-  @IsNotEmpty({ message: '请填写所属课程' })
+  // @IsNotEmpty({ message: '请填写所属课程' })
   @prop({ ref: 'Course' })
   course: Ref<Course>;
 
