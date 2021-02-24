@@ -4,6 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { Episode } from './episode.model';
 import { User } from './user.model';
+import { Category } from './category.model';
 
 @modelOptions({
   schemaOptions: {
@@ -33,19 +34,31 @@ export class Course {
   @prop()
   sprice: number;
 
+  @ApiProperty({ description: '是否推荐', example: false })
+  @prop()
+  recommend: boolean;
+
+  @ApiProperty({ description: '是否置顶', example: false })
+  @prop()
+  stick: boolean;
+
   @ApiProperty({ description: '课程作者', example: '' })
-  @arrayProp({
+  @prop({
     ref: 'User',
-    localField: '_id',
-    foreignField: '_id',
+    // localField: '_id',
+    // foreignField: '_id',
   })
-  author: Ref<User>[];
+  author: Ref<User>;
+
+  @ApiProperty({ description: '文档分类', example: '' })
+  @prop({ ref: 'Category' })
+  category: Ref<Category>;
 
   @ApiProperty({ description: '课时', example: [] })
-  @arrayProp({
+  @prop({
     ref: 'Episode',
-    localField: '_id', // Course类的本地键
-    foreignField: 'course', // 与Episode的course进行关联
+    // localField: '_id', // Course类的本地键
+    // foreignField: 'course', // 与Episode的course进行关联
   })
   episodes: Ref<Episode>[];
 }

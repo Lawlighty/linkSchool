@@ -17,7 +17,7 @@ import { Document } from '@libs/db/models/document.model';
     },
     // get:id
     findOne: {
-      populate: 'author',
+      populate: ['author', 'category'],
       decorators: [ApiOperation({ summary: '查看文档详情' })],
     },
     // post

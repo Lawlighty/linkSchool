@@ -11,10 +11,13 @@ import { Course } from '@libs/db/models/course.model';
   routes: {
     // get
     find: {
+      sort: '-stick',
+      populate: ['author', 'category', 'episodes'],
       decorators: [ApiOperation({ summary: '查询课程列表' })],
     },
     // get:id
     findOne: {
+      populate: ['author', 'category', 'episodes'],
       decorators: [ApiOperation({ summary: '查看课程详情' })],
     },
     // post

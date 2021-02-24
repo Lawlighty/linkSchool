@@ -20,21 +20,25 @@ export class Episode {
   @prop()
   file: string;
 
-  @ApiProperty({ description: '课时价格' })
+  @ApiProperty({ description: '课时文本文件', example: '' })
   @prop()
-  price: number;
+  textfile: string;
 
-  @ApiProperty({ description: '课时SVIP价格' })
-  @prop()
-  sprice: number;
+  // @ApiProperty({ description: '课时价格' })
+  // @prop()
+  // price: number;
+
+  // @ApiProperty({ description: '课时SVIP价格' })
+  // @prop()
+  // sprice: number;
 
   @ApiProperty({ description: '所属课程', example: '' })
   @IsNotEmpty({ message: '请填写所属课程' })
   @prop({ ref: 'Course' })
   course: Ref<Course>;
 
-  @ApiProperty({ description: '所属作者', example: '' })
-  @IsNotEmpty({ message: '请填写所属作者' })
-  @prop({ ref: 'User' })
-  author: Ref<User>;
+  // @ApiProperty({ description: '所属作者', example: '' })
+  // @IsNotEmpty({ message: '请填写所属作者' })
+  // @prop({ ref: 'User' })
+  // author: Ref<User>;
 }
