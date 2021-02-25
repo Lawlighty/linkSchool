@@ -14,6 +14,8 @@ import { AuthGuard } from '@nestjs/passport';
   routes: {
     // get
     find: {
+      populate: ['course'],
+      sort: 'createdAt',
       decorators: [ApiOperation({ summary: '查询课时列表' })],
     },
     // get:id

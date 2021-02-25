@@ -14,6 +14,7 @@ import { BannersModule } from './banners/banners.module';
 import { DocumentsModule } from './documents/documents.module';
 import { CommentsModule } from './comments/comments.module';
 import { CategorysModule } from './categorys/categorys.module';
+import { QuestionsModule } from './questions/questions.module';
 const mcx = require('multer-cos-x');
 @Module({
   imports: [
@@ -44,6 +45,7 @@ const mcx = require('multer-cos-x');
     DocumentsModule,
     CommentsModule,
     CategorysModule,
+    QuestionsModule,
   ], // 引入数据库module
   controllers: [AdminController],
   providers: [AdminService],
