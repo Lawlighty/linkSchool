@@ -10,8 +10,8 @@ import { InjectModel } from 'nestjs-typegoose';
   routes: {
     // get
     find: {
-      populate: ['user', 'category', 'accept'],
-      sort: 'createdAt',
+      populate: ['author', 'category', 'accept'],
+      sort: '-createdAt',
       decorators: [ApiOperation({ summary: '查询问答列表' })],
     },
     // get:id

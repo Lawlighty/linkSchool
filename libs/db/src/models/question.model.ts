@@ -34,4 +34,8 @@ export class Question {
   @ApiProperty({ description: '采纳的回答' })
   @prop({ ref: 'Comment' })
   accept: Ref<Comment>;
+
+  @ApiProperty({ description: '浏览量' })
+  @prop()
+  view: number;
 }

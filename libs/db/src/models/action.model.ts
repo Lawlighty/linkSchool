@@ -26,6 +26,6 @@ export class Action {
   type: string;
 
   @ApiProperty({ description: '操作名称' })
-  @prop({ enum: ['LIKE', 'UP_VOTE', 'DOWN_VOTE', 'LEARN'] }) // 只允许 收藏/ 点赞/ 不赞 / 学习
+  @prop({ enum: ['LIKE', 'UP_VOTE', 'DOWN_VOTE', 'LEARN'] }) // 只允许 收藏/ 好评/ 差评 / 学习
   name: string;
 }
