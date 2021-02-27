@@ -8,6 +8,9 @@ import { CoursesModule } from '../courses/courses.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ActionsModule } from './actions/actions.module';
+import { BannersModule } from './banners/banners.module';
+import { DocumentsModule } from './documents/documents.module';
+import { CategorysModule } from './categorys/categorys.module';
 @Module({
   imports: [
     CommonModule,
@@ -23,6 +26,9 @@ import { ActionsModule } from './actions/actions.module';
     AuthModule,
     CoursesModule,
     ActionsModule,
+    BannersModule,
+    DocumentsModule,
+    CategorysModule,
 
     // EpisodesModule,
   ],

@@ -21,19 +21,11 @@ import { Document } from '@libs/db/models/document.model';
       decorators: [ApiOperation({ summary: '查看文档详情' })],
     },
     // post
-    create: {
-      decorators: [ApiOperation({ summary: '创建文档' })],
-      //   dto: CreateTagDto,
-    },
+    create: false,
     // put
-    update: {
-      decorators: [ApiOperation({ summary: '更新文档' })],
-      // dto: CreateUserDto,
-    },
+    update: false,
     // delete:id
-    delete: {
-      decorators: [ApiOperation({ summary: '删除文档' })],
-    },
+    delete: false,
   },
 })
 @Controller('documents')
@@ -42,15 +34,4 @@ export class DocumentsController {
   constructor(
     @InjectModel(Document) private readonly model: ModelType<Document>,
   ) {}
-
-  // @Get()
-  // @ApiOperation({ summary: '获取评论列表' })
-  // async index() {
-  //   //   async index() {
-  //   // const params = JSON.parse(query);
-  //   // const params = JSON.parse(query);
-  //   return await this.model.find().populate('author');
-  //   //   .where(params.where)
-  //   //   .setOptions(params);
-  // }
 }
