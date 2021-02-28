@@ -11,6 +11,7 @@ import { ActionsModule } from './actions/actions.module';
 import { BannersModule } from './banners/banners.module';
 import { DocumentsModule } from './documents/documents.module';
 import { CategorysModule } from './categorys/categorys.module';
+import { QuestionsModule } from './questions/questions.module';
 @Module({
   imports: [
     CommonModule,
@@ -29,6 +30,7 @@ import { CategorysModule } from './categorys/categorys.module';
     BannersModule,
     DocumentsModule,
     CategorysModule,
+    QuestionsModule,
 
     // EpisodesModule,
   ],
