@@ -20,6 +20,10 @@ export class Episode {
   @prop()
   file: string;
 
+  @ApiProperty({ description: '视频时长', example: '' })
+  @prop()
+  duration: string;
+
   @ApiProperty({ description: '课时文本文件', example: '' })
   @prop()
   textfile: string;

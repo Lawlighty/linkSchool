@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { Crud } from 'nestjs-mongoose-crud';
@@ -34,4 +34,16 @@ export class DocumentsController {
   constructor(
     @InjectModel(Document) private readonly model: ModelType<Document>,
   ) {}
+
+  @Get(':id')
+  @ApiOperation({ summary: '查看文档详情' })
+  // @UseGuards(AuthGuard('jwt'))
+  async getCourseDetail(@Param('id') id: string) {
+    const oldCourse = await this.model
+      .findById(id)
+      .populate(['author', 'category']);
+    const browse = oldCourse.browse || 0;
+    await this.model.updateOne({ _id: id }, { $set: { browse: browse + 1 } });
+    return await this.model.findById(id).populate(['author', 'category']);
+  }
 }

@@ -61,4 +61,8 @@ export class Course {
     // foreignField: 'course', // 与Episode的course进行关联
   })
   episodes: Ref<Episode>[];
+
+  @ApiProperty({ description: '浏览量', example: 0 }) // 学习
+  @prop()
+  browse: number;
 }

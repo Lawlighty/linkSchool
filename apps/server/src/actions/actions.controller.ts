@@ -4,8 +4,26 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { CurrentUser } from 'apps/admin/src/auth/current-user.decorater';
+import { Crud } from 'nestjs-mongoose-crud';
 import { InjectModel } from 'nestjs-typegoose';
 
+@Crud({
+  model: Action,
+  routes: {
+    // get
+    find: {
+      decorators: [ApiOperation({ summary: '查询动作列表' })],
+    },
+    // get:id
+    findOne: false,
+    // post
+    create: false,
+    // put
+    update: false,
+    // delete:id
+    delete: false,
+  },
+})
 @Controller('actions')
 @ApiTags('用户操作')
 export class ActionsController {

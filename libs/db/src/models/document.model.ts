@@ -59,4 +59,8 @@ export class Document {
   @ApiProperty({ description: '文档分类', example: '' })
   @prop({ ref: 'Category' })
   category: Ref<Category>;
+
+  @ApiProperty({ description: '浏览量', example: 0 }) // 学习
+  @prop()
+  browse: number;
 }
