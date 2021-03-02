@@ -79,8 +79,8 @@ export class AuthController {
     return {
       status: 200,
       user: user.toJSON(),
-      // token: this.JwtService.sign({ _id: String(user._id) }), // 生成token 签名
-      token: this.JwtService.sign(user.toJSON()), // 生成token 签名
+      token: this.JwtService.sign({ _id: String(user._id) }), // 生成token 签名
+      // token: this.JwtService.sign(user.toJSON()), // 生成token 签名
     };
   }
 

@@ -24,7 +24,7 @@ export class Action {
   object: Ref<Course | Episode | Document | Question>;
 
   @ApiProperty({ description: '对象类型' })
-  @prop({ enum: ['Course', 'Episode', 'Document', 'Question'] }) // 只允许
+  @prop({ enum: ['Course', 'Episode', 'Document', 'Question', 'User'] }) // 只允许
   type: string;
 
   @ApiProperty({ description: '操作名称' })

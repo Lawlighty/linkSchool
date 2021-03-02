@@ -13,16 +13,24 @@ import { DocumentsModule } from './documents/documents.module';
 import { CategorysModule } from './categorys/categorys.module';
 import { QuestionsModule } from './questions/questions.module';
 import { EpisodesModule } from './episodes/episodes.module';
+const mcx = require('multer-cos-x');
+
 @Module({
   imports: [
     CommonModule,
     MulterModule.registerAsync({
-      useFactory: () => {
-        return {};
-      },
-      // 文件上传
-      // storage:,
-      // dest:'upload',// 本地存储
+      useFactory: () => ({
+        storage: mcx({
+          cos: {
+            // 必填参数
+            SecretId: process.env.COS_SECRET,
+            SecretKey: process.env.COS_KEY,
+            Bucket: process.env.COS_BUCKET,
+            Region: process.env.COS_REGION,
+          },
+        }),
+        // dest: 'uploads',
+      }),
     }),
     // UsersModule,
     AuthModule,

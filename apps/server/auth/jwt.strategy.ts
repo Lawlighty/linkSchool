@@ -14,9 +14,11 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: process.env.SECRET_TOKEN,
     } as StrategyOptions);
+    console.log('进入token验证');
   }
 
   async validate(id) {
+    const user = this.userModel.findById(id);
     return this.userModel.findById(id);
   }
 }

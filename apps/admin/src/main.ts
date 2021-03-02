@@ -11,6 +11,7 @@ async function bootstrap() {
     .setDescription('供极客学院调用的服务端API')
     .setVersion('1.0')
     // .addTag('Geek')
+    .addBearerAuth() // 启用 token--->swagger使用
     .build();
 
   app.useGlobalPipes(new ValidationPipe());
