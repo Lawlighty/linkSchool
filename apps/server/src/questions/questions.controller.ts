@@ -1,7 +1,9 @@
 import { Question } from '@libs/db/models/question.model';
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ModelType } from '@typegoose/typegoose/lib/types';
+import { CurrentUser } from 'apps/admin/src/auth/current-user.decorater';
 import { Crud } from 'nestjs-mongoose-crud';
 import { InjectModel } from 'nestjs-typegoose';
 
@@ -37,5 +39,29 @@ import { InjectModel } from 'nestjs-typegoose';
 @Controller('questions')
 @ApiTags('问答')
 export class QuestionsController {
-  @InjectModel(Question) private readonly model: ModelType<Question>;
+  constructor(
+    @InjectModel(Question) private readonly model: ModelType<Question>,
+  ) {}
+
+  @Get(':id')
+  @ApiOperation({ summary: '查看问题详情' })
+  // @UseGuards(AuthGuard('jwt'))
+  async getQuestionDetail(@Param('id') id: string) {
+    const oldQuestion = await this.model
+      .findById(id)
+      .populate(['author', 'category', 'accept']);
+    const browse = oldQuestion.browse || 0;
+    await this.model.updateOne({ _id: id }, { $set: { browse: browse + 1 } });
+    return await this.model
+      .findById(id)
+      .populate(['author', 'category', 'accept']);
+  }
+
+  @Post()
+  @ApiOperation({ summary: '发布问题' })
+  @UseGuards(AuthGuard('jwt'))
+  async create(@Body() dto, @CurrentUser() user) {
+    dto.user = user._id; // 评论发布人为登录人id(防止user篡改)
+    return await this.model.create(dto);
+  }
 }

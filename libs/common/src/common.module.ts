@@ -14,7 +14,7 @@ import { JwtModule } from '@nestjs/jwt';
       useFactory() {
         return {
           secret: process.env.SECRET_TOKEN,
-          signOptions: { expiresIn: '8h' }, // token 过期时效
+          signOptions: { expiresIn: '48h' }, // token 过期时效
         };
       },
     }),

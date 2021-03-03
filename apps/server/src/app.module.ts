@@ -13,6 +13,7 @@ import { DocumentsModule } from './documents/documents.module';
 import { CategorysModule } from './categorys/categorys.module';
 import { QuestionsModule } from './questions/questions.module';
 import { EpisodesModule } from './episodes/episodes.module';
+import { CommentsModule } from './comments/comments.module';
 const mcx = require('multer-cos-x');
 
 @Module({
@@ -41,6 +42,7 @@ const mcx = require('multer-cos-x');
     CategorysModule,
     QuestionsModule,
     EpisodesModule,
+    CommentsModule,
 
     // EpisodesModule,
   ],

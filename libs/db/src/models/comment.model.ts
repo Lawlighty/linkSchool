@@ -6,6 +6,7 @@ import { Course } from './course.model';
 import { User } from './user.model';
 import { Episode } from './episode.model';
 import { Document } from './document.model';
+import { Question } from './question.model';
 
 @modelOptions({
   schemaOptions: {
@@ -20,10 +21,10 @@ export class Comment {
 
   @ApiProperty({ description: '对象' })
   @prop({ refPath: 'type' }) // 根据type 参考
-  object: Ref<Course | Episode | Document>;
+  object: Ref<Course | Episode | Document | Comment | Question>;
 
   @ApiProperty({ description: '对象类型' })
-  @prop({ enum: ['Course', 'Episode', 'Document'] }) // 只允许
+  @prop({ enum: ['Course', 'Episode', 'Document', 'Comment', 'Question'] }) // 只允许
   type: string;
 
   @ApiProperty({ description: '评论内容' })

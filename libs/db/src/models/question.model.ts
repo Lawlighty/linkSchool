@@ -37,5 +37,5 @@ export class Question {
 
   @ApiProperty({ description: '浏览量' })
   @prop()
-  view: number;
+  browse: number;
 }
