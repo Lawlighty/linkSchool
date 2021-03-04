@@ -1,5 +1,5 @@
 import { Category } from '@libs/db/models/category.model';
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { InjectModel } from 'nestjs-typegoose';
@@ -14,5 +14,11 @@ export class CategorysController {
   @ApiOperation({ summary: '获取分类' })
   async index() {
     return await this.model.find();
+  }
+  @Get('getchild')
+  @ApiOperation({ summary: '获取分类' })
+  async indexGetchild(@Query('query') dto: string) {
+    const now_dto = JSON.parse(dto);
+    return await this.model.find(now_dto);
   }
 }
