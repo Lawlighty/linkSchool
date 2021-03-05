@@ -61,7 +61,7 @@ export class QuestionsController {
   @ApiOperation({ summary: '发布问题' })
   @UseGuards(AuthGuard('jwt'))
   async create(@Body() dto, @CurrentUser() user) {
-    dto.user = user._id; // 评论发布人为登录人id(防止user篡改)
+    dto.author = user._id; // 评论发布人为登录人id(防止user篡改)
     return await this.model.create(dto);
   }
 }
