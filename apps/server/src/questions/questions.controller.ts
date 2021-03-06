@@ -64,4 +64,14 @@ export class QuestionsController {
     dto.author = user._id; // 评论发布人为登录人id(防止user篡改)
     return await this.model.create(dto);
   }
+  @Post('tobeAccept')
+  @ApiOperation({ summary: '采纳答案' })
+  @UseGuards(AuthGuard('jwt'))
+  async tobeAccept(@Body() dto, @CurrentUser() user) {
+    await this.model.updateOne(
+      { _id: dto.id },
+      { $set: { accept: dto.accept } },
+    );
+    return await this.model.findById(dto.id);
+  }
 }

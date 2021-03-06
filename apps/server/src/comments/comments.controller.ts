@@ -62,17 +62,52 @@ class CommentCreateDto {
 export class CommentsController {
   constructor(
     @InjectModel(Comment) private readonly model: ModelType<Comment>,
+    @InjectModel(User) private readonly userModel: ModelType<User>,
   ) {}
-  //   @Get()
-  //   @ApiOperation({ summary: '获取评论列表' })
-  //   async index(@Query('query') query: string) {
-  //     //   async index() {
-  //     // const params = JSON.parse(query);
-  //     // const params = JSON.parse(query);
-  //     return await this.model.find().populate('user');
-  //     //   .where(params.where)
-  //     //   .setOptions(params);
-  //   }
+  @Get('deep')
+  @ApiOperation({ summary: '获取深层评论列表' })
+  async index(@Query('query') query: string) {
+    const dto = JSON.parse(query);
+
+    //   async index() {
+    // const params = JSON.parse(query);
+    // const params = JSON.parse(query);
+    const returnList = await this.model
+      .find(dto)
+      .populate(['user', 'replayto']);
+    // returnList.map((item) => {
+    //   console.log('现在的item', item);
+    //   if (item.replayto) {
+    //     console.log('查询replayto 的user');
+    //     // (async () => {
+    //     //   const cccuser = await this.userModel.findById(item.replayto['user']);
+    //     //   console.log('cccuser 的user', cccuser);
+    //     //   item.replayto['user'] = cccuser;
+    //     // })();
+    //     const userInfo = await this.getUserInfo(item.replayto['user']);
+    //   }
+    // });
+    for (let i = 0; i < returnList.length; i++) {
+      if (returnList[i].replayto) {
+        const item = returnList[i];
+        console.log('查询replayto 的user');
+        const userInfo = await this.userModel.findById(item.replayto['user']);
+        returnList[i]['replayto']['user'] = userInfo;
+      }
+    }
+    console.log('returnList', returnList);
+    return returnList;
+    // .populate(['user', 'replayto'])
+    // .populate(['user']);
+    //   .where(params.where)
+    //   .setOptions(params);
+  }
+
+  @Get('aa')
+  @ApiOperation({ summary: '获取user' })
+  async getUserInfo(@Query('id') id: string) {
+    return await this.userModel.findById(id);
+  }
 
   @Post()
   @ApiOperation({ summary: '添加评论' })
