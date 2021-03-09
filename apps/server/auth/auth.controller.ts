@@ -98,7 +98,7 @@ export class AuthController {
   @Put(':id')
   @ApiOperation({ summary: '修改个人信息' })
   async UpdateUserInfo(@Param('id') id: string, @Body() dto: UpdateUserDto) {
-    await this.userModel.findByIdAndUpdate(id, dto);
-    return { code: 200, message: '更新完成' };
+    return await this.userModel.findByIdAndUpdate(id, dto, { new: true });
+    // return await this.userModel.update({ _id: id }, dto);
   }
 }

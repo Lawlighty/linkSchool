@@ -2,9 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { AdminModule } from './admin.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { LoggerMiddleware } from 'libs/middleware/logger.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AdminModule);
+  // 全局使用中间件
+  app.use(new LoggerMiddleware().use);
   app.enableCors(); // 允许跨域
   const config = new DocumentBuilder()
     .setTitle('极客学院后台管理API(管理端))')

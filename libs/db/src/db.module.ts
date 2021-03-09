@@ -13,6 +13,7 @@ import { Category } from './models/category.model';
 import { Svip } from './models/svip.model';
 import { Order } from './models/order.model';
 import { Question } from './models/question.model';
+import { Study } from './models/study.model';
 
 // 引入模型
 const models = TypegooseModule.forFeature([
@@ -28,6 +29,7 @@ const models = TypegooseModule.forFeature([
   Svip,
   Order,
   Question,
+  Study,
 ]);
 @Global() // 全局
 @Module({

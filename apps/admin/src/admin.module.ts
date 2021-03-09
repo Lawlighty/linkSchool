@@ -15,10 +15,13 @@ import { DocumentsModule } from './documents/documents.module';
 import { CommentsModule } from './comments/comments.module';
 import { CategorysModule } from './categorys/categorys.module';
 import { QuestionsModule } from './questions/questions.module';
+import { StatusMonitorModule } from 'nestjs-status-monitor';
 const mcx = require('multer-cos-x');
 @Module({
   imports: [
     CommonModule,
+    StatusMonitorModule.forRoot(), // 服务监控
+    // StatusMonitorModule.setUp(statusMonitorConfig),
     MulterModule.registerAsync({
       useFactory: () => ({
         storage: mcx({

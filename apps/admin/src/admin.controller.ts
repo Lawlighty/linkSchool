@@ -20,7 +20,6 @@ export class AdminController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async upload(@UploadedFile('file') file) {
-    console.log('file==>', file);
     return file;
   }
 }

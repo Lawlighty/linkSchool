@@ -1,5 +1,5 @@
 import { Banner } from '@libs/db/models/banner.model';
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { InjectModel } from 'nestjs-typegoose';
@@ -10,7 +10,8 @@ export class BannersController {
   constructor(@InjectModel(Banner) private readonly model: ModelType<Banner>) {}
   @Get()
   @ApiOperation({ summary: '显示轮播图列表' })
-  async index() {
-    return await this.model.find();
+  async index(@Query('query') query) {
+    const q = JSON.parse(query);
+    return await this.model.find({ type: q.type });
   }
 }

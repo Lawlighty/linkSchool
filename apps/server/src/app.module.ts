@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { MulterModule } from '@nestjs/platform-express';
 // import { EpisodesModule } from 'apps/admin/src/episodes/episodes.module';
 // import { UsersModule } from 'apps/admin/src/users/users.module';
@@ -14,11 +14,17 @@ import { CategorysModule } from './categorys/categorys.module';
 import { QuestionsModule } from './questions/questions.module';
 import { EpisodesModule } from './episodes/episodes.module';
 import { CommentsModule } from './comments/comments.module';
+import { StudysModule } from './studys/studys.module';
+import { LoggerMiddleware } from 'libs/middleware/logger.middleware';
+import statusMonitorConfig from 'libs/statusMonitor/statusMonitor';
+import { StatusMonitorModule } from 'nestjs-status-monitor';
 const mcx = require('multer-cos-x');
 
 @Module({
   imports: [
     CommonModule,
+    // StatusMonitorModule.setUp(statusMonitorConfig),
+    StatusMonitorModule.forRoot(), // 服务监控
     MulterModule.registerAsync({
       useFactory: () => ({
         storage: mcx({
@@ -33,6 +39,7 @@ const mcx = require('multer-cos-x');
         // dest: 'uploads',
       }),
     }),
+
     // UsersModule,
     AuthModule,
     CoursesModule,
@@ -43,10 +50,19 @@ const mcx = require('multer-cos-x');
     QuestionsModule,
     EpisodesModule,
     CommentsModule,
+    StudysModule,
 
     // EpisodesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  // configure(consumer: MiddlewareConsumer) {
+  //   // 为 hello 路由添加中间件
+  //   consumer
+  //     .apply(LoggerMiddleware)
+  //     // .exclude({ path: 'hello', method: RequestMethod.POST }) // 排除
+  //     .forRoutes('banners'); // 根节点
+  // }
+}

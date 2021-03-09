@@ -20,7 +20,7 @@ export class Banner {
   img: string;
 
   @ApiProperty({ description: '轮播图类型', example: 'HOME_PAGE' })
-  @prop({ enum: ['HOME_PAGE'] }) // 首页
+  @prop({ enum: ['HOME_PAGE', 'AD'] }) // 首页
   type: string;
 
   @ApiProperty({ description: '跳转地址', example: '' })
