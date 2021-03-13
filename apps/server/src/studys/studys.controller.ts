@@ -5,8 +5,27 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { CurrentUser } from 'apps/server/auth/current-user.decorater';
+import { Crud } from 'nestjs-mongoose-crud';
 import { InjectModel } from 'nestjs-typegoose';
 
+@Crud({
+  model: Study,
+  routes: {
+    // get
+    find: {
+      populate: ['object'],
+      decorators: [ApiOperation({ summary: '查询学习列表' })],
+    },
+    // get:id
+    findOne: false,
+    // post
+    create: false,
+    // put
+    update: false,
+    // delete:id
+    delete: false,
+  },
+})
 @Controller('studys')
 @ApiTags('学习操作')
 export class StudysController {
@@ -14,7 +33,6 @@ export class StudysController {
     @InjectModel(Study) private readonly model: ModelType<Study>,
     @InjectModel(Course) private readonly courseModel: ModelType<Course>,
   ) {}
-
   @Get('num')
   @ApiOperation({ summary: '查询学习人数' })
   @ApiBearerAuth()

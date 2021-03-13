@@ -16,6 +16,7 @@ import { CommentsModule } from './comments/comments.module';
 import { CategorysModule } from './categorys/categorys.module';
 import { QuestionsModule } from './questions/questions.module';
 import { StatusMonitorModule } from 'nestjs-status-monitor';
+import { TeachersModule } from './teachers/teachers.module';
 const mcx = require('multer-cos-x');
 @Module({
   imports: [
@@ -49,6 +50,7 @@ const mcx = require('multer-cos-x');
     CommentsModule,
     CategorysModule,
     QuestionsModule,
+    TeachersModule,
   ], // 引入数据库module
   controllers: [AdminController],
   providers: [AdminService],

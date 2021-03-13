@@ -18,6 +18,9 @@ import { StudysModule } from './studys/studys.module';
 import { LoggerMiddleware } from 'libs/middleware/logger.middleware';
 import statusMonitorConfig from 'libs/statusMonitor/statusMonitor';
 import { StatusMonitorModule } from 'nestjs-status-monitor';
+// import { TeachersModule } from './teachers/teachers.module';
+import { TeachersModule } from './teachers/teachers.module';
+
 const mcx = require('multer-cos-x');
 
 @Module({
@@ -51,6 +54,8 @@ const mcx = require('multer-cos-x');
     EpisodesModule,
     CommentsModule,
     StudysModule,
+    TeachersModule,
+    // TeachersModule,
 
     // EpisodesModule,
   ],

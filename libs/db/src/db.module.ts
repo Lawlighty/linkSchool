@@ -14,6 +14,7 @@ import { Svip } from './models/svip.model';
 import { Order } from './models/order.model';
 import { Question } from './models/question.model';
 import { Study } from './models/study.model';
+import { Teacher } from './models/teacher';
 
 // 引入模型
 const models = TypegooseModule.forFeature([
@@ -30,6 +31,7 @@ const models = TypegooseModule.forFeature([
   Order,
   Question,
   Study,
+  Teacher,
 ]);
 @Global() // 全局
 @Module({

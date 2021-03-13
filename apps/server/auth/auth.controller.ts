@@ -1,8 +1,9 @@
 import { User } from '@libs/db/models/user.model';
 import {
   Body,
-  Controller,
   Get,
+  Controller,
+  Query,
   Param,
   Post,
   Put,
@@ -23,6 +24,7 @@ import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { CurrentUser } from './current-user.decorater';
 import { UpdateUserDto } from './dto/updateUser.dto';
+import {} from 'mongoose';
 // export class RegisterDto {
 //   @ApiProperty({ description: '用户名', example: '用户名' })
 //   username: string;
@@ -93,6 +95,12 @@ export class AuthController {
   // 自定义 装饰器获取user
   async user(@CurrentUser() user: DocumentType<User>) {
     return user;
+  }
+
+  @Get('lecturer')
+  @ApiOperation({ summary: '获取讲师信息' })
+  async lecturer(@Query('id') id: string) {
+    return await this.userModel.findById(id);
   }
 
   @Put(':id')

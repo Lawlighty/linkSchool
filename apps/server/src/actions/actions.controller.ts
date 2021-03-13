@@ -20,6 +20,7 @@ import { InjectModel } from 'nestjs-typegoose';
   routes: {
     // get
     find: {
+      populate: ['object'],
       decorators: [ApiOperation({ summary: '查询动作列表' })],
     },
     // get:id
